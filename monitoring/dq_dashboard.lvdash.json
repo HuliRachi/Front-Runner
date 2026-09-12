@@ -1,0 +1,221 @@
+{
+  "datasets": [
+    {
+      "name": "f9ca031a",
+      "displayName": "Expectations",
+      "queryLines": [
+        "SELECT * FROM dq_expectations_history;"
+      ],
+      "catalog": "dev",
+      "schema": "stepright"
+    },
+    {
+      "name": "d7607fd0",
+      "displayName": "Quarantine",
+      "queryLines": [
+        "SELECT * FROM dq_quarantine_counts;"
+      ],
+      "catalog": "dev",
+      "schema": "stepright"
+    },
+    {
+      "name": "155ac056",
+      "displayName": "Orphans",
+      "queryLines": [
+        "SELECT * FROM dq_referential_integrity;"
+      ],
+      "catalog": "dev",
+      "schema": "stepright"
+    }
+  ],
+  "pages": [
+    {
+      "name": "5c509209",
+      "displayName": "Expectations",
+      "layout": [
+        {
+          "widget": {
+            "name": "ee068726",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "f9ca031a",
+                  "fields": [
+                    {
+                      "name": "failed_records",
+                      "expression": "`failed_records`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "line",
+              "encodings": {
+                "x": {
+                  "fieldName": "failed_records",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "y": {
+                  "fieldName": "failed_records",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 2,
+            "y": 0,
+            "width": 6,
+            "height": 6
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    },
+    {
+      "name": "ee88c1f6",
+      "displayName": "Quarantine",
+      "layout": [
+        {
+          "widget": {
+            "name": "6836a99d",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "d7607fd0",
+                  "fields": [
+                    {
+                      "name": "source",
+                      "expression": "`source`"
+                    },
+                    {
+                      "name": "quarantined_count",
+                      "expression": "`quarantined_count`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "quarantined_count",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "y": {
+                  "fieldName": "source",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "color": {
+                  "fieldName": "source",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 2,
+            "y": 0,
+            "width": 8,
+            "height": 6
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    },
+    {
+      "name": "98337400",
+      "displayName": "Orphans",
+      "layout": [
+        {
+          "widget": {
+            "name": "28f2bb50",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "155ac056",
+                  "fields": [
+                    {
+                      "name": "orphaned_count",
+                      "expression": "`orphaned_count`"
+                    },
+                    {
+                      "name": "relationship",
+                      "expression": "`relationship`"
+                    },
+                    {
+                      "name": "daily(checked_at)",
+                      "expression": "DATE_TRUNC(\"DAY\", `checked_at`)"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "widgetType": "table",
+              "encodings": {
+                "columns": [
+                  {
+                    "fieldName": "orphaned_count"
+                  },
+                  {
+                    "fieldName": "relationship"
+                  },
+                  {
+                    "fieldName": "daily(checked_at)"
+                  }
+                ]
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 2,
+            "y": 0,
+            "width": 7,
+            "height": 6
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    }
+  ],
+  "uiSettings": {
+    "theme": {
+      "widgetHeaderAlignment": "ALIGNMENT_UNSPECIFIED"
+    },
+    "applyModeEnabled": false
+  }
+}
